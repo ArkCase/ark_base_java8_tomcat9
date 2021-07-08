@@ -2,12 +2,15 @@ FROM 345280441424.dkr.ecr.ap-south-1.amazonaws.com/ark_base_java8:latest
 
 RUN useradd -r -g root tomcat
 
-ADD  https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.22/bin/apache-tomcat-9.0.22.tar.gz /tmp
+ENV TOMCAT_VERSION=9.0.22  \
+    TOMCAT_MAJOR_VERSION=9
+    
+ADD  https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR_VERSION}/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz /tmp
 
 RUN cd /tmp && \
-    tar -xf apache-tomcat-9.0.22.tar.gz && \
-    rm apache-tomcat-9.0.22.tar.gz && \
-    mv apache-tomcat-9.0.22 /opt/tomcat/ && \
+    tar -xf apache-tomcat-${TOMCAT_VERSION}.tar.gz && \
+    rm apache-tomcat-${TOMCAT_VERSION}.tar.gz && \
+    mv apache-tomcat-${TOMCAT_VERSION} /opt/tomcat/ && \
     chown -R tomcat: /opt/tomcat && \
     chmod +x /opt/tomcat/bin/*.sh
 
