@@ -17,6 +17,7 @@ ENV PATH=/opt/tomcat/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin
 # WORKDIR /opt/tomcat
 USER tomcat
 EXPOSE 8080
+CMD ["catalina.sh","run"]
 
 
 
