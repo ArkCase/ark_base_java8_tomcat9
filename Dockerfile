@@ -1,6 +1,6 @@
 FROM 345280441424.dkr.ecr.ap-south-1.amazonaws.com/ark_base_java8:latest
 
-RUN useradd -r -g root tomcat
+RUN useradd -r -g tomcat tomcat
 
 ENV TOMCAT_VERSION=9.0.22  \
     TOMCAT_MAJOR_VERSION=9
