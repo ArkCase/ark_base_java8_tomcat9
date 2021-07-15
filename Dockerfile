@@ -25,8 +25,8 @@ ENV CATALINA_HOME="/opt/tomcat/" \
     CATALINA_PID="/opt/tomcat/temp/tomcat.pid" \
     PATH="/opt/tomcat2/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
-WORKDIR /opt/tomcat2
-# USER tomcat
+WORKDIR /opt/tomcat
+USER tomcat
 EXPOSE 8080
 # Starting tomcat
 CMD ["catalina.sh","run"]
