@@ -7,25 +7,26 @@ LABEL ORG="Armedia LLC" \
 
 RUN useradd  --system --user-group tomcat
 
-ENV TOMCAT_VERSION=9.0.22  \
+ENV TOMCAT_VERSION=9.0.50  \
     TOMCAT_MAJOR_VERSION=9
     
 ADD  https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR_VERSION}/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz /tmp
 
 RUN cd /tmp && \
     tar -xf apache-tomcat-${TOMCAT_VERSION}.tar.gz && \
-    rm apache-tomcat-${TOMCAT_VERSION}.tar.gz && \
-    mv apache-tomcat-${TOMCAT_VERSION} /opt/tomcat/ && \
+    rm apache-tomcat-${TOMCAT_VERSION}.tar.gz &&\
+    cd /tmp && mv apache-tomcat-${TOMCAT_VERSION} /opt/tomcat/ && \
     chown -R tomcat:tomcat /opt/tomcat && \
-    chmod +x /opt/tomcat/bin/*.sh && \
+    chmod u+x /opt/tomcat/bin/*.sh && \
     # Removal of default/unwanted Applications
     rm -rf /opt/tomcat/webapps/* 
 
-ENV CATALINA_HOME=/opt/tomcat/
-ENV CATALINA_PID=/opt/tomcat/temp/tomcat.pid
-ENV PATH=/opt/tomcat/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-WORKDIR /opt/tomcat
-USER tomcat
+ENV CATALINA_HOME="/opt/tomcat/" \
+    CATALINA_PID="/opt/tomcat/temp/tomcat.pid" \
+    PATH="/opt/tomcat2/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+WORKDIR /opt/tomcat2
+# USER tomcat
 EXPOSE 8080
 # Starting tomcat
 CMD ["catalina.sh","run"]
