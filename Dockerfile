@@ -23,7 +23,7 @@ RUN cd /tmp && \
 
 ENV CATALINA_HOME="/opt/tomcat/" \
     CATALINA_PID="/opt/tomcat/temp/tomcat.pid" \
-    PATH="/opt/tomcat2/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    PATH="/opt/tomcat/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 WORKDIR /opt/tomcat
 USER tomcat
